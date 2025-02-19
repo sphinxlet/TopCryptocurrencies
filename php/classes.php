@@ -1,6 +1,51 @@
-<?php 
+<?php
     include "db_connect.php";
 
+    //function to get data from database
+    function getCryptocurrencies() {
+        $currencies = [];
+    
+        //call function to connect to database
+        $conn = dbConnect();
+    
+        if ($conn) {
+            //get all items from database
+            $query = "SELECT * FROM cryptocurrency_prices ORDER BY market_cap DESC";
+            
+            $result = pg_query($conn, $query);
+    
+            if ($result) {
+                if (pg_num_rows($result) > 0) {
+                    while ($row = pg_fetch_assoc($result)) {
+                        $currencies[] = array_map('htmlspecialchars', $row);
+                    }
+
+                    //resturn result
+                    return $currencies;
+                } else {
+                    return [];
+                }
+            } else {
+                error_log("Error executing query: " . pg_last_error($conn));
+                return ["error" => "Failed to fetch cryptocurrency data"];
+            }
+        } else {
+            error_log("Error connecting to database");
+            return ["error" => "Database connection failed"];
+        }
+    }
+    
+    if (isset($_GET['action']) && $_GET['action'] == 'getCryptocurrencies') {
+        header('Content-Type: application/json');
+    
+        $cryptocurrencies = getCryptocurrencies();
+
+        // return result
+        echo json_encode($cryptocurrencies);
+        exit; 
+    }
+ 
+    //function to populate database with API data
     function populateDatabase() {
         //api call
         $apiUrl = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?limit=50";
@@ -119,3 +164,48 @@
         echo json_encode(filterByName());
         exit;
     }
+
+    //function to filter by name through search input
+    function filterByName() {
+        //function to connect to database
+        $conn = dbConnect();
+    
+        if ($conn) {
+            $search_input = isset($_GET['search_input']) ? pg_escape_string($conn, $_GET['search_input']) : '';
+    
+            //select all items from database that are like search input
+            $query = "SELECT * FROM cryptocurrency_prices WHERE LOWER(name) LIKE LOWER('%$search_input%') ORDER BY market_cap DESC";
+    
+            $result = pg_query($conn, $query);
+    
+            if ($result) {
+                if (pg_num_rows($result) > 0) {
+                    $currencies = [];
+    
+                    while ($row = pg_fetch_assoc($result)) {
+                        $currencies[] = $row;
+                    }
+
+                    //return result
+                    return $currencies;
+                } else {
+                    return ["message" => "No cryptocurrencies found matching your search"];
+                }
+            } else {
+                error_log("Error executing query: " . pg_last_error($conn));
+                return ["error" => "Error executing the query"];
+            }
+        } else {
+            error_log("Error connecting to the database");
+            return ["error" => "Database connection failed"];
+        }
+    }
+    
+    if (isset($_GET['action']) && $_GET['action'] == 'filterByName') {
+        header('Content-Type: application/json');
+    
+        // return result
+        echo json_encode(filterByName());
+        exit;
+    }
+?>

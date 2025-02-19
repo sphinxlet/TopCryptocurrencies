@@ -9,7 +9,7 @@ function searchCrypto(e) {
     const value = e.target.value;
     
     $.ajax({
-        url: '../php/search_filter.php',
+        url: '../php/classes.php',
         type: 'GET',
         dataType: 'json', 
         data: {
@@ -63,7 +63,7 @@ function refreshTable() {
 
     // Populate the database
     $.ajax({
-        url: '../php/populate_database.php',
+        url: '../php/classes.php',
         type: 'GET',
         data: {
             action: 'populateDatabase'
@@ -78,7 +78,7 @@ function refreshTable() {
 
     // Fetch the cryptocurrencies data
     $.ajax({
-        url: '../php/get_cryptocurrencies.php',
+        url: '../php/classes.php',
         type: 'GET',
         dataType: 'json',
         data: {
