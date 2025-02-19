@@ -39,9 +39,15 @@ CREATE TABLE cryptocurrency_prices (
 
 Edit the config.php file in the root directory and add your database details.
 
-4. Run the project:
+## 4. Run the Project
 
-Execute the PHP script to fetch and store data.
+Start a local PHP server to run the project with the front-end:
+
+php -S 127.0.0.1:8000
+
+Then, open your browser and go to http://127.0.0.1:8000
+
+Alternatively, if you need to fetch and store data separately, you can execute the PHP script:
 
 php index.php
 
