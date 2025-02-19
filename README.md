@@ -18,11 +18,11 @@ Prerequisites
 
 Installation
 
-# 1. Clone the repository:
+### 1. Clone the repository:
 
 git clone sphinxlet/TopCryptocurrencies
 
-# 2. Set up the PostgreSQL database:
+### 2. Set up the PostgreSQL database:
 
 Create a table by executing the following SQL command:
 
@@ -35,11 +35,11 @@ CREATE TABLE cryptocurrency_prices (
     volume FLOAT NOT NULL
 );
 
-# 3. Configure environment variables:
+### 3. Configure environment variables:
 
 Edit the config.php file in the root directory and add your database details.
 
-# 4. Run the Project
+### 4. Run the Project
 
 Start a local PHP server to run the project with the front-end:
 
