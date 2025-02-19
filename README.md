@@ -1,7 +1,5 @@
 # TopCryptocurrencies
  
-# Cryptocurrency-Data-Fetcher
-
 This project retrieves the top 50 cryptocurrencies from the CoinMarketCap API and stores the data in a PostgreSQL database.
 
 Features
