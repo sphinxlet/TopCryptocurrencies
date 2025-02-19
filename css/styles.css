@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+    font-family: "Montserrat", serif !important;
+    background-color: #0C102D !important;
+}
+
+p,h1,h2,h3,h4,h5,h6 {
+    color: white !important;
+}
+
+h1 {
+    color: white !important;
+    font-weight: 700 !important;
+}
+
+header {
+    padding-top: 100px;
+}
+
+footer {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+}
+
+.pink-text {
+    color: #DE21B1;
+}
+
+.btn-outline-secondary {
+    border-color: #DE21B1 !important; 
+    color: #DE21B1 !important;
+}
+
+.btn-outline-secondary:hover {
+    border-color: white !important; 
+    color: white !important;
+    background-color: #DE21B1 !important;
+}
+
+a {
+    color: #DE21B1 !important;
+}
+
+/* Table CSS */
+
+td {
+    padding: 15px 25px 0px 25px !important;
+}
+
+th {
+    padding: 15px 25px !important;
+}
+
+th, tr, td, thead, tbody {
+    background-color: transparent !important;
+    color: white !important;
+}
+
+tr, td {
+    border-bottom: 1px solid #ffffff38 !important;
+}
+
+table {
+    background: #131641 !important;
+    background: linear-gradient(270deg, #131641 0%, rgba(0,212,255,0) 70%) !important;
+}
+
+/* Table CSS */
