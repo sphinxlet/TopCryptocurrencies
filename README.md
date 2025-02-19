@@ -39,7 +39,7 @@ CREATE TABLE cryptocurrency_prices (
 
 Edit the config.php file in the root directory and add your database details.
 
-## 4. Run the Project
+4. Run the Project
 
 Start a local PHP server to run the project with the front-end:
 
